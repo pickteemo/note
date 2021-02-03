@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-03T08:12:03.217Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36" etag="bQ0ajjpoqRx9h2u9XxkT" version="14.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-03T09:13:20.263Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36" etag="XddrAxusByuw3nq2gntJ" version="14.1.4" type="github">
   <diagram id="CunCGzvaNNiCj6hEN54D" name="Page-1">
     <mxGraphModel dx="774" dy="1148" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
@@ -211,7 +211,6 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="951.5" y="394.5" />
-              <mxPoint x="990" y="309" />
               <mxPoint x="1027.5" y="219" />
             </Array>
           </mxGeometry>
@@ -276,7 +275,7 @@
           <mxGeometry x="1042.875" y="482" width="251.5" height="64" as="geometry" />
         </mxCell>
         <mxCell id="E-WgCWVg2FSw_FKLfw6c-58" value="&lt;p&gt;PrioritizeChangeLane(True)&lt;br&gt;&lt;/p&gt;&lt;p&gt;UpdateStatus(in_change_lane)&lt;br&gt;&lt;/p&gt;&lt;p&gt;优先处理换道，更新状态为换道中&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1042.875" y="589" width="251.5" height="90" as="geometry" />
+          <mxGeometry x="1042.875" y="576" width="251.5" height="90" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
