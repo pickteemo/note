@@ -1,0 +1,26 @@
+{
+  "config": {
+    "branch": "main",
+    "domain": "https://pickteemo.github.io/",
+    "email": "6265076349@qq.com",
+    "platform": "github",
+    "repository": "pickteemo.github.io",
+    "token": "3fdbef7681c977161d5da07cf57ebfba4e3a9b96",
+    "username": "pickteemo"
+  },
+  "comment": {
+    "commentPlatform": "gitalk",
+    "disqusSetting": {
+      "api": "",
+      "apikey": "",
+      "shortname": ""
+    },
+    "gitalkSetting": {
+      "clientId": "",
+      "clientSecret": "",
+      "owner": "",
+      "repository": ""
+    },
+    "showComment": false
+  }
+}
