@@ -17,6 +17,22 @@
       "fileName": "leetcode-561-shu-zu-chai-fen"
     },
     {
+      "content": "path decider负责给每个Obstacle打tag，供后续使用\n<!-- more -->\nfile : modules/planning/tasks/deciders/path_decider/path_decider.cc\n\n\n在不处于借道场景时（之前lane borrow decider中决定），对前方block的障碍物做停车处理，将停止点记录下来\n```\n    // - add STOP decision for blocking obstacles.\n    if (obstacle->Id() == blocking_obstacle_id &&\n        !injector_->planning_context()\n             ->planning_status()\n             .path_decider()\n             .is_in_path_lane_borrow_scenario()) {\n      // Add stop decision\n      ADEBUG << \"Blocking obstacle = \" << blocking_obstacle_id;\n      ObjectDecisionType object_decision;\n      *object_decision.mutable_stop() = GenerateObjectStopDecision(*obstacle);\n      path_decision->AddLongitudinalDecision(\"PathDecider/blocking_obstacle\",\n                                             obstacle->Id(), object_decision);\n      continue;\n    }\n```\n\n借道场景下：\n首先排除距离参考线太远的一些Obstacle：\n     - 不在s范围内的不考虑\n     -  距离车道线（不是中心线）超过3m的\n\n接下来如果横向有重叠部分，添加停止点信息，如果能够避让，添加避让信息\n\n",
+      "data": {
+        "title": "Path Decider",
+        "date": "2021-02-15 09:46:56",
+        "tags": [],
+        "published": true,
+        "hideInList": false,
+        "feature": null,
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "path decider负责给每个Obstacle打tag，供后续使用",
+      "fileName": "path-decider"
+    },
+    {
       "content": "path optimizer根据boundaries生成了很多条空间上的path\n在进行速度规划之前，需要先验证生成的path的合理性\n<!-- more -->\n\nfile:modules/planning/tasks/deciders/path_assessment_decider/path_assessment_decider.cc\n\n代码的注释还是比较清晰的，主要分成四部分：\n>1. Remove invalid path.\n>2. Analyze and add important info for speed decider to use\n>3. Pick the optimal path.\n>4. Update necessary info for lane-borrow decider's future uses.\n\n### 1.Remove invalid path\n#### Is valid fallback path \n设置了3个条件来验证fallbackpath的合理性\n- 轨迹点不为空\n- 距离参考线不是特别远(20m)\n- 距离左右车道线不是特别远（10m）\n\n```\n  // Basic sanity checks.\n  if (path_data.Empty()) {\n    ADEBUG << \"Fallback Path: path data is empty.\";\n    return false;\n  }\n  // Check if the path is greatly off the reference line.\n  if (IsGreatlyOffReferenceLine(path_data)) {\n    ADEBUG << \"Fallback Path: ADC is greatly off reference line.\";\n    return false;\n  }\n  // Check if the path is greatly off the road.\n  if (IsGreatlyOffRoad(reference_line_info, path_data)) {\n    ADEBUG << \"Fallback Path: ADC is greatly off road.\";\n    return false;\n  }\n  return true;\n```\n#### Is valid regulat path\n设置了5个条件来验证常规path的合理性\n- 轨迹点不为空\n- 距离参考线不是特别远(20m)\n- 距离左右车道线不是特别远（10m）\n- 与静态障碍物没有发生碰撞：path不应当与静态障碍物发生碰撞\n- 不会停在反向道路上：检查终点不在目标车道上\n```\n  // Basic sanity checks.\n  if (path_data.Empty()) {\n    ADEBUG << path_data.path_label() << \": path data is empty.\";\n    return false;\n  }\n  // Check if the path is greatly off the reference line.\n  if (IsGreatlyOffReferenceLine(path_data)) {\n    ADEBUG << path_data.path_label() << \": ADC is greatly off reference line.\";\n    return false;\n  }\n  // Check if the path is greatly off the road.\n  if (IsGreatlyOffRoad(reference_line_info, path_data)) {\n    ADEBUG << path_data.path_label() << \": ADC is greatly off road.\";\n    return false;\n  }\n  // Check if there is any collision.\n  if (IsCollidingWithStaticObstacles(reference_line_info, path_data)) {\n    ADEBUG << path_data.path_label() << \": ADC has collision.\";\n    return false;\n  }\n\n  if (IsStopOnReverseNeighborLane(reference_line_info, path_data)) {\n    ADEBUG << path_data.path_label() << \": stop at reverse neighbor lane\";\n    return false;\n  }\n```\n\n### 2.Analyze and add important info for speed decider to use\n添加一些信息供speed decider使用\n\n对于涉及换道的path，需要标记出换道点的位置（in lane 、 out lane）\n\n对于block的轨迹，需要标记出block的位置\n\n### 3. Pick the optimal path.\n挑选最好的path\n\n\n\n\nto do \nstd bind    std placeholders\n\n\n\n",
       "data": {
         "title": "Path Assessment Decider",
