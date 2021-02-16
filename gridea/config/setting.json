@@ -2,10 +2,11 @@
   "config": {
     "branch": "main",
     "domain": "https://pickteemo.github.io/",
-    "email": "6265076349@qq.com",
+    "email": "625076349@qq.com",
     "platform": "github",
+    "privateKey": "",
     "repository": "pickteemo.github.io",
-    "token": "3fdbef7681c977161d5da07cf57ebfba4e3a9b96",
+    "token": "0a5454d8aa3821000c9ce00e7c3a2fa1141a0b5a",
     "username": "pickteemo"
   },
   "comment": {
