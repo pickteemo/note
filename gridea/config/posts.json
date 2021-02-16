@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "content": "https://leetcode-cn.com/problems/array-partition-i/\n数组\n\n给定长度为 2n 的整数数组 nums ，你的任务是将这些数分成 n 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从 1 到 n 的 min(ai, bi) 总和最大。\n\n返回该 最大总和 。\n<!-- more -->\n😅评论说的好,这是比各个语言的排序速度吧\n最大总和 - 排序后返回奇数项之和\n最小总和 - 排序后返回前n项\n```\nclass Solution {\npublic:\n    int arrayPairSum(vector<int>& nums) {\n        std::sort(nums.begin(),num.end());\n        int res = 0;\n        for(int i = 0 ; i <nums.size() ; i = i+2){\n            res += nums[i];\n        }\n        return res;\n    }\n};\n```\n```\nclass Solution:\n    def arrayPairSum(self, nums: List[int]) -> int:\n        nums.sort()\n        return sum(nums[::2])\n```\n",
+      "data": {
+        "title": "LeetCode 561 数组拆分",
+        "date": "2021-02-16 09:59:53",
+        "tags": [],
+        "published": true,
+        "hideInList": false,
+        "feature": null,
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "https://leetcode-cn.com/problems/array-partition-i/\n数组\n\n给定长度为 2n 的整数数组 nums ，你的任务是将这些数分成 n 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从 1 到 n 的 min(ai, bi) 总和最大。\n\n返回该 最大总和 。",
+      "fileName": "leetcode-561-shu-zu-chai-fen"
+    },
+    {
       "content": "path optimizer根据boundaries生成了很多条空间上的path\n在进行速度规划之前，需要先验证生成的path的合理性\n<!-- more -->\n\nfile:modules/planning/tasks/deciders/path_assessment_decider/path_assessment_decider.cc\n\n代码的注释还是比较清晰的，主要分成四部分：\n>1. Remove invalid path.\n>2. Analyze and add important info for speed decider to use\n>3. Pick the optimal path.\n>4. Update necessary info for lane-borrow decider's future uses.\n\n### 1.Remove invalid path\n#### Is valid fallback path \n设置了3个条件来验证fallbackpath的合理性\n- 轨迹点不为空\n- 距离参考线不是特别远(20m)\n- 距离左右车道线不是特别远（10m）\n\n```\n  // Basic sanity checks.\n  if (path_data.Empty()) {\n    ADEBUG << \"Fallback Path: path data is empty.\";\n    return false;\n  }\n  // Check if the path is greatly off the reference line.\n  if (IsGreatlyOffReferenceLine(path_data)) {\n    ADEBUG << \"Fallback Path: ADC is greatly off reference line.\";\n    return false;\n  }\n  // Check if the path is greatly off the road.\n  if (IsGreatlyOffRoad(reference_line_info, path_data)) {\n    ADEBUG << \"Fallback Path: ADC is greatly off road.\";\n    return false;\n  }\n  return true;\n```\n#### Is valid regulat path\n设置了5个条件来验证常规path的合理性\n- 轨迹点不为空\n- 距离参考线不是特别远(20m)\n- 距离左右车道线不是特别远（10m）\n- 与静态障碍物没有发生碰撞：path不应当与静态障碍物发生碰撞\n- 不会停在反向道路上：检查终点不在目标车道上\n```\n  // Basic sanity checks.\n  if (path_data.Empty()) {\n    ADEBUG << path_data.path_label() << \": path data is empty.\";\n    return false;\n  }\n  // Check if the path is greatly off the reference line.\n  if (IsGreatlyOffReferenceLine(path_data)) {\n    ADEBUG << path_data.path_label() << \": ADC is greatly off reference line.\";\n    return false;\n  }\n  // Check if the path is greatly off the road.\n  if (IsGreatlyOffRoad(reference_line_info, path_data)) {\n    ADEBUG << path_data.path_label() << \": ADC is greatly off road.\";\n    return false;\n  }\n  // Check if there is any collision.\n  if (IsCollidingWithStaticObstacles(reference_line_info, path_data)) {\n    ADEBUG << path_data.path_label() << \": ADC has collision.\";\n    return false;\n  }\n\n  if (IsStopOnReverseNeighborLane(reference_line_info, path_data)) {\n    ADEBUG << path_data.path_label() << \": stop at reverse neighbor lane\";\n    return false;\n  }\n```\n\n### 2.Analyze and add important info for speed decider to use\n添加一些信息供speed decider使用\n\n对于涉及换道的path，需要标记出换道点的位置（in lane 、 out lane）\n\n对于block的轨迹，需要标记出block的位置\n\n### 3. Pick the optimal path.\n挑选最好的path\n\n\n\n\nto do \nstd bind    std placeholders\n\n\n\n",
       "data": {
         "title": "Path Assessment Decider",
