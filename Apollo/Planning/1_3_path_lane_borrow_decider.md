@@ -1,12 +1,4 @@
----
-title: 'PATH_LANE_BORROW_DECIDER 借道处理'
-date: 2021-02-04 14:50:26
-tags: [Apollo]
-published: true
-hideInList: false
-feature: 
-isTop: false
----
+
 首先看一下自车当前的状态path_decider_status
 ```
 auto* mutable_path_decider_status = injector_->planning_context()

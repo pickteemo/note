@@ -1,12 +1,4 @@
----
-title: 'fem_pos_deviation_smoother'
-date: 2021-02-04 09:03:04
-tags: [Apollo]
-published: true
-hideInList: false
-feature: 
-isTop: false
----
+
 目录：modules/planning/math/discretized_points_smoothing/fem_pos_deviation_osqp_interface.cc
 
 平滑类比较独立，所以单独摘出来看

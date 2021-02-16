@@ -1,13 +1,3 @@
----
-title: 'LaneFollowStage'
-date: 2021-02-03 14:12:08
-tags: [Apollo]
-published: true
-hideInList: false
-feature: 
-isTop: false
----
-
 配置文件：modules/planning/conf/scenario/lane_follow_config.pb.txt
 
 TASK

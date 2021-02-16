@@ -1,12 +1,3 @@
----
-title: 'LANE_CHANGE_DECIDER 换道状态处理'
-date: 2021-02-04 14:46:38
-tags: [Apollo]
-published: true
-hideInList: false
-feature: 
-isTop: false
----
 File Path: modules/planning/tasks/deciders/lane_change_decider/lane_change_decider.cc
 
 首先取出上一刻的换道状态prev_status

@@ -1,12 +1,4 @@
----
-title: 'Path Assessment Decider'
-date: 2021-02-08 14:31:16
-tags: []
-published: true
-hideInList: false
-feature: 
-isTop: false
----
+
 path optimizer根据boundaries生成了很多条空间上的path
 在进行速度规划之前，需要先验证生成的path的合理性
 <!-- more -->

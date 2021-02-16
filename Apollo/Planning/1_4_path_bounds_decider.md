@@ -1,12 +1,4 @@
----
-title: 'Path Bounds Decider'
-date: 2021-02-04 15:28:28
-tags: []
-published: true
-hideInList: false
-feature: 
-isTop: false
----
+
 前面几个decider更偏向于make decision，通过外部环境选择自车的动作
 接下来的目标是根据道路、障碍物以及前几步的decision-making建立数学模型来求解轨迹
 
