@@ -1,12 +1,4 @@
----
-title: 'Piecewise Jerk Path Optimizer'
-date: 2021-02-07 13:41:06
-tags: []
-published: true
-hideInList: false
-feature: 
-isTop: false
----
+
 如下图所示，frenet坐标系下，给定边界，使用优化的思想求解轨迹
 [![y1of1I.png](https://s3.ax1x.com/2021/02/04/y1of1I.png)](https://imgchr.com/i/y1of1I)
 <!-- more -->
