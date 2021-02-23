@@ -150,11 +150,25 @@ STBoundary是基于Polygon的多边形类，如下图：
 
 
 
-
-
 ### GenerateRegularSTBound
 
-上面生成的obs boundary，在同一时刻可能会有很多组，需要进行处理得到合适的bound。与path中的GenerateRegularSLBound类似，使用向前扫的方式(sweep-line)获得具体的ST-boundary。
+上面生成的obs boundary，在同一时刻可能会有很多组，需要进行处理得到合适的bound。
+
+与path中的GenerateRegularSLBound类似，使用向前扫的方式(sweep-line)获得具体的ST-boundary。
+
+#### 初始化
+
+按0.1s的步长初始化st - bound
+
+```c++
+for (double curr_t = 0.0; curr_t <= st_bounds_config_.total_time();
+       curr_t += kSTBoundsDeciderResolution) {
+    st_bound->emplace_back(curr_t, std::numeric_limits<double>::lowest(),
+                           std::numeric_limits<double>::max());
+    vt_bound->emplace_back(curr_t, std::numeric_limits<double>::lowest(),
+                           std::numeric_limits<double>::max());
+  }
+```
 
 #### Vehicle Dynamics Limits运动学限制
 
