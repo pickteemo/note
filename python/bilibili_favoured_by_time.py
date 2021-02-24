@@ -53,4 +53,4 @@ follow_list_id = []
 for following in followings_g:
     mid = following["mid"]
     operate_favorite_by_mid(mid)
-    time.sleep(1.0)
+    time.sleep(5.0)
