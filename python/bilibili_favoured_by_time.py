@@ -23,19 +23,19 @@ def operate_favorite_by_mid(_mid):
         # 跳过收藏的
         bvid = video_t["bvid"]
         if video.is_favoured(bvid=bvid, verify=verify):
-            print("favoured,break.\tauthor:" +
-                  video_t["author"] + "\t video:" + video_t["title"])
+            #print("favoured,break.\tauthor:" +
+            #     video_t["author"] + "\t video:" + video_t["title"])
             break
 
         # 跳过太新的
         create_time = video_t["created"]
         if create_time > end_time_u:
-            print("too new,skip.\tauthor:" +
-                  video_t["author"] + "\t video:" + video_t["title"])
+#             print("too new,skip.\tauthor:" +
+#                   video_t["author"] + "\t video:" + video_t["title"])
             continue
         elif create_time < start_time_u:
-            print("too OLD,break.\tauthor:" +
-                  video_t["author"] + "\t video:" + video_t["title"])
+#             print("too OLD,break.\tauthor:" +
+#                   video_t["author"] + "\t video:" + video_t["title"])
             break
 
         # favoured
