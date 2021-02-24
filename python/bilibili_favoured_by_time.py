@@ -11,14 +11,14 @@ now_time = datetime.datetime.now()
 #end_time = datetime.date(2021,2,23)
 #start_time_u = int(time.mktime(start_time.timetuple()))
 end_time_u = int(time.mktime(now_time.timetuple()))
-start_time_u = end_time_u - 86400
+start_time_u = end_time_u - (86400 * 2)
 
 
 def operate_favorite_by_mid(_mid):
     videos_list_g = user.get_videos_g(uid=_mid)
     for video_t in videos_list_g:
         # sleep
-        time.sleep(2.0)
+        time.sleep(5.0)
 
         # 跳过收藏的
         bvid = video_t["bvid"]
@@ -55,4 +55,4 @@ follow_list_id = []
 for following in followings_g:
     mid = following["mid"]
     operate_favorite_by_mid(mid)
-    time.sleep(5.0)
+    time.sleep(10.0)
