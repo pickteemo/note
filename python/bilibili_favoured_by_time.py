@@ -43,6 +43,8 @@ def operate_favorite_by_mid(_mid):
               video_t["author"] + "\t video:" + video_t["title"])
         video.operate_favorite(add_media_ids="45360826",
                                bvid=bvid, verify=verify)
+        time.sleep(5.0)
+ 
 
 
 verify = Verify(sessdata="55604017%2C1629537801%2Cc87fe*21",
@@ -53,4 +55,4 @@ follow_list_id = []
 for following in followings_g:
     mid = following["mid"]
     operate_favorite_by_mid(mid)
-    time.sleep(2.0)
+    time.sleep(5.0)
