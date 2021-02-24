@@ -1,3 +1,5 @@
+
+
 ### v2rayA -  Linux client supporting global transparent proxy
 
 [github](https://github.com/v2rayA/v2rayA)
@@ -17,3 +19,6 @@ https://algorithmsbook.com/
 ### INTRO
 
 This book provides a broad introduction to algorithms for decision making under uncertainty. We cover a wide variety of topics related to decision making, introducing the underlying mathematical problem formulations and the algorithms for solving them.
+
+### deepin pool
+https://packages.deepin.com/deepin/pool/non-free/d/
