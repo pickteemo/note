@@ -18,12 +18,12 @@ def operate_favorite_by_mid(_mid):
     videos_list_g = user.get_videos_g(uid=_mid)
     for video_t in videos_list_g:
         # sleep
-        time.sleep(4.0) 
+        time.sleep(1.0) 
         # 跳过收藏的
         bvid = video_t["bvid"]
         if video.is_favoured(bvid=bvid, verify=verify):
             # sleep
-            time.sleep(4.0)
+            time.sleep(1.0)
             #print("favoured,break.\tauthor:" +
             #     video_t["author"] + "\t video:" + video_t["title"])
             break
@@ -44,7 +44,7 @@ def operate_favorite_by_mid(_mid):
               video_t["author"] + "\t video:" + video_t["title"])
         video.operate_favorite(add_media_ids="45360826",
                                bvid=bvid, verify=verify)
-        time.sleep(5.0)
+        time.sleep(2.0)
  
 
 
@@ -56,4 +56,4 @@ follow_list_id = []
 for following in followings_g:
     mid = following["mid"]
     operate_favorite_by_mid(mid)
-    time.sleep(4.0)
+    time.sleep(1.0)
