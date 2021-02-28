@@ -12,22 +12,15 @@ now_time = datetime.datetime.now()
 end_time_u = int(time.mktime(now_time.timetuple()))
 start_time_u = end_time_u - (86400 * 2)
 
-# 2 id add to watch later
-id_watchlater = []
-id_watchlater.append("594534726")  # 小黑板
-
-sleep_time = 2.0
-
-
 def operate_favorite_by_mid(_mid):
     videos_list_g = user.get_videos_g(uid=_mid)
     for video_t in videos_list_g:
         # sleep
-        time.sleep(sleep_time)
+        time.sleep(5.0) 
         # 跳过收藏的
         bvid = video_t["bvid"]
         if video.is_favoured(bvid=bvid, verify=verify):
-            time.sleep(sleep_time)
+            time.sleep(5.0)
             #print("favoured,break.\tauthor:" +
             #     video_t["author"] + "\t video:" + video_t["title"])
             break
@@ -35,29 +28,21 @@ def operate_favorite_by_mid(_mid):
         # 跳过太新的
         create_time = video_t["created"]
         if create_time > end_time_u:
-            #             print("too new,skip.\tauthor:" +
-            #                   video_t["author"] + "\t video:" + video_t["title"])
+#             print("too new,skip.\tauthor:" +
+#                   video_t["author"] + "\t video:" + video_t["title"])
             continue
         elif create_time < start_time_u:
-            #             print("too OLD,break.\tauthor:" +
-            #                   video_t["author"] + "\t video:" + video_t["title"])
+#             print("too OLD,break.\tauthor:" +
+#                   video_t["author"] + "\t video:" + video_t["title"])
             break
 
         # favoured
-
-        if _mid in id_watchlater:
-            video.operate_favorite(add_media_ids="1191407326",
-                                   bvid=bvid, verify=verify)  # 默认
-            print("add watch later:\tauthor:" +
-                  video_t["author"] + "\t video:" + video_t["title"])
-        else:
-            video.operate_favorite(add_media_ids="45360826",
-                                   bvid=bvid, verify=verify)  # 默认
-            print("add: \t author:" +
-                  video_t["author"] + "\t video:" + video_t["title"])
-        time.sleep(sleep_time)
-
-
+        print("set favoured.\tauthor:" +
+              video_t["author"] + "\t video:" + video_t["title"])
+        video.operate_favorite(add_media_ids="45360826",
+                               bvid=bvid, verify=verify)
+        time.sleep(5.0)
+        
 verify = Verify(sessdata="55604017%2C1629537801%2Cc87fe*21",
                 csrf="2a58a75e97b20a8ab1f9e840076fa93c")
 
@@ -70,6 +55,6 @@ for following in followings_g:
     count = count + 1
     mid = following["mid"]
     operate_favorite_by_mid(mid)
-    print("(" + str(count) + "/" + str(following_num) + ")", end='\r')
-    time.sleep(sleep_time)
+    print("(" + str(count) + "/" + str(following_num) + ")",end='\r')
+    time.sleep(5.0)
 print("save over")
