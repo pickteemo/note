@@ -152,7 +152,7 @@ STBoundary是基于Polygon的多边形类，如下图：
 
 ### GenerateRegularSTBound
 
-上面生成的obs boundary，在同一时刻可能会有很多组，需要进行处理得到合适的bound。
+上面生成的obs boundary，在同一时刻可能会有很多组（每个obs对应一组），需要进行处理得到合适的bound。
 
 与path中的GenerateRegularSLBound类似，使用向前扫的方式(sweep-line)获得具体的ST-boundary。
 
@@ -214,9 +214,15 @@ for (double curr_t = 0.0; curr_t <= st_bounds_config_.total_time();
     RemoveInvalidDecisions(driving_limits_bound, &available_choices);
 ```
 
-#### Make Obstacle Decision
+主要的功能实现在GetSBoundsFromDecisions函数中,遍历比较t时刻的障碍物的smax,smin与自车的smax,smin，给每个障碍物打超车、避让tag。
 
-比较guide line和boundary，做出t时刻的超车(Overtake)/减速避让(Yield)相关的Decision
+最后remove掉不合理的decision（driving limits bound）
+
+#### Make Obstacle Final Decision
+
+比较guide line和boundary，按规则对obs的Decision进行排序（RankDecisions）
+
+做出t时刻的超车(Overtake)/减速避让(Yield)相关的最终Decision
 
 根据t时刻的s方向的边界和决策，求导计算v的边界
 
