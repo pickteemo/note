@@ -10,13 +10,13 @@ now_time = datetime.datetime.now()
 #end_time = datetime.date(2021,2,23)
 #start_time_u = int(time.mktime(start_time.timetuple()))
 end_time_u = int(time.mktime(now_time.timetuple()))
-start_time_u = end_time_u - (86400 * 2)
+start_time_u = end_time_u - (86400*1.5)
 
 # 2 id add to watch later
 id_watchlater = []
-id_watchlater.append("594534726")  # 小黑板
+id_watchlater.append(594534726)  # 小黑板
 
-sleep_time = 2.0
+sleep_time = 6.0
 
 
 def operate_favorite_by_mid(_mid):
@@ -66,10 +66,16 @@ relation = user.get_relation_info(uid=7647426, verify=verify)
 following_num = relation["following"]
 follow_list_id = []
 count = 0
+print("save start")
 for following in followings_g:
+    time.sleep(sleep_time)
     count = count + 1
     mid = following["mid"]
-    operate_favorite_by_mid(mid)
-    print("(" + str(count) + "/" + str(following_num) + ")", end='\r')
-    time.sleep(sleep_time)
+    try:
+        operate_favorite_by_mid(mid)
+    except:
+        continue
+    else:
+        print(time.asctime(time.localtime(time.time()))," (" + str(count) + "/" + str(following_num) + ") id:" + following["uname"] )
+
 print("save over")
