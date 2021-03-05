@@ -15,6 +15,16 @@ start_time_u = end_time_u - (86400*1.5)
 # 2 id add to watch later
 id_watchlater = []
 id_watchlater.append(594534726)  # 小黑板
+id_watchlater.append(439004370)  # 一只撸狗
+id_watchlater.append(7349)  # STN
+id_watchlater.append(1565155)  # 是大腿
+id_watchlater.append(10462362)  # 天天卡牌
+id_watchlater.append(220746669)  # 嗨游君
+id_watchlater.append(4641697)  # 最强联盟
+id_watchlater.append(279991456)  # 靠谱电竞
+
+
+
 
 sleep_time = 6.0
 
@@ -46,12 +56,12 @@ def operate_favorite_by_mid(_mid):
         # favoured
 
         if _mid in id_watchlater:
-            video.operate_favorite(add_media_ids="1191407326",
-                                   bvid=bvid, verify=verify)  # 默认
+            video.operate_favorite(add_media_ids=[1191407326],
+                                   bvid=bvid, verify=verify)  # 
             print("add watch later:\tauthor:" +
                   video_t["author"] + "\t video:" + video_t["title"])
         else:
-            video.operate_favorite(add_media_ids="45360826",
+            video.operate_favorite(add_media_ids=[45360826],
                                    bvid=bvid, verify=verify)  # 默认
             print("add: \t author:" +
                   video_t["author"] + "\t video:" + video_t["title"])
