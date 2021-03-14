@@ -22,6 +22,9 @@ id_watchlater.append(10462362)  # 天天卡牌
 id_watchlater.append(220746669)  # 嗨游君
 id_watchlater.append(4641697)  # 最强联盟
 id_watchlater.append(279991456)  # 靠谱电竞
+id_watchlater.append(28870949)  # 陈小双
+
+
 
 
 
