@@ -1,6 +1,6 @@
 ---
-title: 
-date: 
+title: 1.11 Speed Heuristic Optimizer
+date: 2021-03-17 11:44:47
 layout: false
 tags: Apollo
 ---
@@ -58,4 +58,6 @@ v/a/j_cost:起点到该点的速度、加速度、加加速度cost
 
 ### RetrieveSpeedProfile
 
-遍历找每个t上cost最小的点，然后计算速度
+遍历找每个t上cost最小的点，
+
+然后根据前后点计算速度
