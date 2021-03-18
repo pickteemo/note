@@ -1,6 +1,6 @@
 ---
 title: 1.6 Path Assessment Decider
-date: 2021-03-13 19:11:43
+date: 2021-03-12 19:11:43
 tags: Apollo
 ---
 

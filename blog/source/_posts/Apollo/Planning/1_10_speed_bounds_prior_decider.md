@@ -1,6 +1,6 @@
 ---
 title: 1.10 Speed Bounds Prior Decider
-date: 2021-03-13 19:11:43
+date: 2021-03-16 19:11:43
 tags: Apollo
 ---
 

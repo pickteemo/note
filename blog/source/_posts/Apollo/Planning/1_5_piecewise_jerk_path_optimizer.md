@@ -1,6 +1,6 @@
 ---
 title: 1.5 Piecewise Jerk Path Optimizer
-date: 2021-03-13 19:11:43
+date: 2021-03-11 19:11:43
 tags: Apollo
 disableNunjucks: true
 ---

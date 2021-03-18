@@ -1,6 +1,6 @@
 ---
 title: 1.8 Rule Base Stop Decider
-date: 2021-03-13 19:11:43
+date: 2021-03-14 19:11:43
 tags: Apollo
 ---
 
