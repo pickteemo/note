@@ -2,7 +2,7 @@
 title: 1.5 Piecewise Jerk Path Optimizer
 date: 2021-03-11 19:11:43
 tags: Apollo
-disableNunjucks: true
+mathjax: true
 ---
 如下图所示，frenet坐标系下，给定边界，使用优化的思想求解轨迹
 [![y1of1I.png](https://s3.ax1x.com/2021/02/04/y1of1I.png)](https://imgchr.com/i/y1of1I)
@@ -71,7 +71,7 @@ $$
 $$
 {l_{i+1}}'' = \int_{0}^{\Delta s}{l_{i->i+1}}'''ds={l_i}''+{l_{i->i+1}}'''\cdot\Delta s\\
 {l_{i+1}}'={l_i}'+\int_{0}^{\Delta s}{l}''(s)ds={l_i}'+{l_i}''\cdot\Delta s+\frac{1}{2}{l_{i->i+1}}'''\cdot\Delta s^2\\
-l_{i+1}=l_i+\int_{0}^{\Delta s}{l}'(s)ds\\=l_i+(l_i)'\cdot\Delta s+\frac{1}{2}{l_i}''\cdot s^2+\frac{1}{6}{l_{i->i+1}}'''\cdot\Delta s^3
+l_{i+1}=l_i+\int_{0}^{\Delta s}{l}'(s)ds\\=l_i+(l_i)'\cdot\Delta s+\frac{1}{2}{l_i}''\cdot s^2+\frac{1}{6}{l_{i->i+1}}'''\c转为P矩阵dot\Delta s^3
 $$
 
 
@@ -107,28 +107,27 @@ $$
 先看cost中的平滑项：
 
 $$
-w_l\cdot \sum_{i=0}^{n-1} l_i^2 + w_{{l}'}\cdot \sum_{i=0}^{n-1} {l_i}'^2 + w_{{l}''}\cdot\sum_{i=0}^{n-1} {l_i}''^2 + w_{{l}'''}\cdot \sum_{i=0}^{n-2}(\frac{{l_{i+1}}'' - {l_i}''}{\Delta s})^2
+w_l\cdot \sum_{i=0}^{n-1} l_i^2 +w_{ { l }'}\cdot \sum_{i=0}^{n-1}{l_i}'^2+w_{ { l }''}\cdot\sum_{i=0}^{n-1} {l_i}''^2+w_{ { l }'''}\cdot\sum_{i=0}^{n-2}(\frac{ { l_{i+1 } }'' - {l_i}''}{\Delta s})^2 
 $$
 
-转为P矩阵:
 
+转为P矩阵:
 $$
 \begin{vmatrix}
 w_l&0&0&0&0&0&0&0&0&0&0&0\\
 0&w_l&0&0&0&0&0&0&0&0&0&0\\
 0&0&w_l&0&0&0&0&0&0&0&0&0\\
 0&0&0&w_l&0&0&0&0&0&0&0&0\\
-0&0&0&0&w_{{l}'}&0&0&0&0&0&0&0\\
-0&0&0&0&0&w_{{l}'}&0&0&0&0&0&0\\
-0&0&0&0&0&0&w_{{l}'}&0&0&0&0&0\\
-0&0&0&0&0&0&0&w_{{l}'}&0&0&0&0\\
-0&0&0&0&0&0&0&0&w_{{l}''}+\frac{w_{{l}'''}}{\Delta s^2}&0&0&0\\
-0&0&0&0&0&0&0&0&-2\frac{w_{{l}'''}}{\Delta s^2}&w_{{l}''}+2\frac{w_{{l}'''}}{\Delta s^2}&0&0\\
-0&0&0&0&0&0&0&0&0&-2\frac{w_{{l}'''}}{\Delta s^2}&w_{{l}''}+2\frac{w_{{l}'''}}{\Delta s^2}&0\\
-0&0&0&0&0&0&0&0&0&0&-2\frac{w_{{l}'''}}{\Delta s^2}&w_{{l}''}+\frac{w_{{l}'''}}{\Delta s^2}\\
+0&0&0&0&w_{ {l }'}&0&0&0&0&0&0&0\\
+0&0&0&0&0&w_ { { l }'}&0&0&0&0&0&0\\
+0&0&0&0&0&0&w_ { { l }'}&0&0&0&0&0\\
+0&0&0&0&0&0&0&w_ { { l }'}&0&0&0&0\\
+0&0&0&0&0&0&0&0&w_ { { l }''}+\frac{w_{ { l }'''}}{\Delta s^2}&0&0&0\\
+0&0&0&0&0&0&0&0&-2\frac{w_ { { l }'''}}{\Delta s^2}&w_{ { l }''}+2\frac{w_{ { l }'''}}{\Delta s^2}&0&0\\
+0&0&0&0&0&0&0&0&0&-2\frac{w_{ { l }'''}}{\Delta s^2}&w_{ { l }''}+2\frac{w_{ { l }'''}}{\Delta s^2}&0\\
+0&0&0&0&0&0&0&0&0&0&-2\frac{w_{ { l }'''}}{\Delta s^2}&w_{ { l }''}+\frac{w_{ { l }'''}}{\Delta s^2}\\
 \end{vmatrix}
 $$
-
 ref项的cost：
 $$
 w_{obs}\cdot \sum_{i=0}^{n-1}(l_i-l_{ref})^2 \\
@@ -151,7 +150,6 @@ $$
 -2w_{ref_4}\cdot l_{ref_4}\\
 \end{vmatrix}
 $$
-
 end_state的cost：
 $$
 w_{end_l}\cdot (l_{n-1} - l_{endref})^2 + w_{end_{dl}}\cdot ({l}'_{n-1}-{l_{endref}}')^2 + w_{end_{ddl}}\cdot ({l}''_{n-1} - {l_{endref}}'')^2
@@ -190,7 +188,6 @@ $$
 -2w_{end_ddl}\cdot end_ddl\\
 \end{vmatrix}
 $$
-
 上面三个矩阵加在一起，就得到了我们最终需要的P矩阵和q矩阵。
 （省略了code中的scale_factor 项
 
@@ -359,7 +356,6 @@ $$
 0 
  \end{bmatrix}
 $$
-
 7. 数学关系 - l' -> l 约束
 和上面的方法一样，
 由

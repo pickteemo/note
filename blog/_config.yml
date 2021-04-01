@@ -105,3 +105,13 @@ deploy:
   type: git
   repo: git@github.com:pickteemo/pickteemo.github.io.git
   branch: main
+
+markdown:
+  plugins:
+    - markdown-it-footnote
+    - markdown-it-sup
+    - markdown-it-sub
+    - markdown-it-abbr
+    - markdown-it-emoji
+    - hexo-math
+

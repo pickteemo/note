@@ -1,6 +1,7 @@
 ---
 title: 2.1 Fem Pos Deviation Smoother
 date: 2021-03-05 19:11:43
+mathjax: true
 tags: Apollo
 ---
 
