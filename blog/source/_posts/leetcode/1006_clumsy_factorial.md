@@ -2,7 +2,7 @@
 title: 1006 笨阶乘
 date: 2021-04-01 09:38:40
 mathjax: true
-tags:
+tags: leetcode
 ---
 
 #### [1006. 笨阶乘](https://leetcode-cn.com/problems/clumsy-factorial/)
