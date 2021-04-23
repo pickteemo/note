@@ -6,7 +6,10 @@ tags: Apollo
 ---
 代码来源：Apollo 6.0分支  [github](https://github.com/ApolloAuto/apollo/tree/r6.0.0/modules/planning/reference_line)
 
+<!-- more -->
+
 #### 配置文件
+
 先看下平滑器的配置文件，
 
 位置：/apollo/modules/planning/conf/discrete_points_smoother_config.txt
@@ -55,7 +58,10 @@ if (smoother_config_.has_qp_spline()) {
 
 ------
 
+
+
 #### 问题
+
 参考modules/planning/math/discretized_points_smoothing/fem_pos_deviation_smoother.h代码中的注释：
 ```
 /*
@@ -76,20 +82,32 @@ if (smoother_config_.has_qp_spline()) {
 ```
  即平滑一系列的离散点
 
+
+
 ------
+
+
  #### 原理
+
  原理和公式可以参考这篇讲解，非常详细：https://zhuanlan.zhihu.com/p/342740447
 
+
+
  Three quadratic penalties are involved:
+
 1. Penalty x on distance between middle point and point by finite element estimate;
 2. Penalty y on path length;
 3. Penalty z on difference between points and reference points
+
+
 
 costX : $\sum ((p_1 + p_3) - 2*p_2)^2$
 
 costY : $\sum (p_{n+1} - p_n)^2$
 
 costZ : $\sum (p_n - p_{refn})^2$
+
+
 
 General formulation of P matrix is as below(with 6 points as an example):
 I is a two by two identity matrix, X, Y, Z represents x * I, y * I, z * I
