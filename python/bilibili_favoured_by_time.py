@@ -29,7 +29,7 @@ id_watchlater.append(28870949)  # 陈小双
 
 
 
-sleep_time = 6.0
+sleep_time = 7.0
 
 
 def operate_favorite_by_mid(_mid):
