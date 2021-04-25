@@ -37,23 +37,20 @@ def operate_favorite_by_mid(_mid):
     for video_t in videos_list_g:
         # sleep
         time.sleep(sleep_time)
+
+        # 跳过太新的
+        create_time = video_t["created"]
+        if create_time < start_time_u:
+            #             print("too OLD,break.\tauthor:" +
+            #                   video_t["author"] + "\t video:" + video_t["title"])
+            break
+
         # 跳过收藏的
         bvid = video_t["bvid"]
         if video.is_favoured(bvid=bvid, verify=verify):
             time.sleep(sleep_time)
             #print("favoured,break.\tauthor:" +
             #     video_t["author"] + "\t video:" + video_t["title"])
-            break
-
-        # 跳过太新的
-        create_time = video_t["created"]
-        if create_time > end_time_u:
-            #             print("too new,skip.\tauthor:" +
-            #                   video_t["author"] + "\t video:" + video_t["title"])
-            continue
-        elif create_time < start_time_u:
-            #             print("too OLD,break.\tauthor:" +
-            #                   video_t["author"] + "\t video:" + video_t["title"])
             break
 
         # favoured
@@ -68,7 +65,6 @@ def operate_favorite_by_mid(_mid):
                                    bvid=bvid, verify=verify)  # 默认
             print("add: \t author:" +
                   video_t["author"] + "\t video:" + video_t["title"])
-        time.sleep(sleep_time)
 
 
 verify = Verify(sessdata="55604017%2C1629537801%2Cc87fe*21",
@@ -87,6 +83,7 @@ for following in followings_g:
     try:
         operate_favorite_by_mid(mid)
     except:
+        print("error:",time.asctime(time.localtime(time.time()))," (" + str(count) + "/" + str(following_num) + ") id:" + following["uname"] )
         continue
     else:
         print(time.asctime(time.localtime(time.time()))," (" + str(count) + "/" + str(following_num) + ") id:" + following["uname"] )
