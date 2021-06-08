@@ -1,0 +1,102 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_proto_library(
+    name = "channel_monitor_tool_cpp_lib",
+    deps = [
+        "channel_monitor_tool_proto_lib",
+    ],
+)
+
+proto_library(
+    name = "channel_monitor_tool_proto_lib",
+    srcs = ["channel_monitor_tool.proto"],
+)
+
+
+cc_binary(
+    name = "channel_monitor",
+    srcs = [
+        "cyber_topology_message.cc",
+        "general_channel_message.cc",
+        "general_message.cc",
+        "general_message_base.cc",
+        "main.cpp",
+        "renderable_message.cc",
+        "screen.cc",
+    ],
+    linkopts = ["-pthread"],
+    deps = [
+        ":cyber_topology_message",
+        ":general_channel_message",
+        ":screen",
+        "@ncurses5",
+        "@com_google_protobuf//:protobuf",
+        "@lcm//:x86",
+    ],
+)
+
+cc_library(
+    name = "cyber_topology_message",
+    hdrs = ["cyber_topology_message.h"],
+    deps = [
+        ":renderable_message",
+        "//modules/common/adapters:lcm_adapter",
+        "@lcm//:x86",
+        "//modules/common/util:config_reader",
+        ":channel_monitor_tool_cpp_lib"
+    ],
+)
+
+cc_library(
+    name = "general_channel_message",
+    hdrs = ["general_channel_message.h"],
+    deps = [
+        ":general_message",
+        ":general_message_base",
+        "@lcm//:x86",
+        ":screen",
+        "//modules/common/data_struct/proto/vehicle:vehicle_module_proto_cpp_lib",
+        "//modules/common/data_struct/proto/drivers/camera:mobileye_proto_cpp_lib",
+        "//modules/common/data_struct/proto/planning:ab_planning_proto_cpp_lib",
+        "//modules/common/data_struct/proto/monitor:system_status_proto_cpp_lib",
+        "//modules/common/data_struct/proto/prediction:prediction_module_proto_cpp_lib",
+        "//modules/common/data_struct/proto/map:map_module_proto_cpp_lib",
+        "//modules/common/data_struct/proto/map:hwp_trajectory_proto_cpp_lib",
+        "//modules/common/data_struct/proto/localization:localization_module_proto_cpp_lib",
+        "//modules/common/data_struct/proto/control:control_module_proto_cpp_lib",
+
+    ],
+)
+
+cc_library(
+    name = "general_message",
+    hdrs = ["general_message.h"],
+    deps = [
+        ":general_message_base",
+    ],
+)
+
+cc_library(
+    name = "general_message_base",
+    hdrs = ["general_message_base.h"],
+    deps = [
+        ":renderable_message",
+    ],
+)
+
+cc_library(
+    name = "renderable_message",
+    hdrs = ["renderable_message.h"],
+    deps = [
+        ":screen",
+    ],
+)
+
+cc_library(
+    name = "screen",
+    hdrs = ["screen.h"],
+)
+
+#cpplint()
