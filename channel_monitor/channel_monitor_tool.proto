@@ -1,0 +1,11 @@
+syntax = "proto3";
+package ab.tools;
+//log记录配置
+message SimpleChannel{
+  string channel_name=1;
+  string message_type=2;
+}
+
+message ChannelConfig{
+  repeated SimpleChannel channel_config = 1;
+}

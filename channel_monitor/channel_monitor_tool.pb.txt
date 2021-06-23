@@ -1,0 +1,41 @@
+channel_config{
+    channel_name:"ab/vehicle/chassis"
+    message_type:"ab.vehicle.Chassis"
+}
+channel_config{
+    channel_name:"mobileye/camera"
+    message_type:"ab.drivers.camera.MobileyeInfo"
+}
+channel_config{
+    channel_name:"ab/hwp/trajectory"
+    message_type:"ab.trajectory.Trajectory"
+}
+channel_config{
+    channel_name:"ab/monitor"
+    message_type:"ab.monitor.SystemStatus"
+}
+channel_config{
+    channel_name:"ab/prediction"
+    message_type:"ab.prediction.HwpPredictionObstacles"
+}
+channel_config{
+    channel_name:"ab/map/routing"
+    message_type:"ab.hwp.hdmap.Trajectory"
+}
+channel_config{
+    channel_name:"ab/canbus/localization"
+    message_type:"ab.localization.gpsImu"
+}
+channel_config{
+    channel_name:"ab/fusion/3x3_grid"
+    message_type:"ab.perception.PerceptionObstacles"
+}
+channel_config{
+    channel_name:"ab/control/command"
+    message_type:"ab.control.ControlCommand"
+}
+channel_config{
+    channel_name:"ab/hwp/test/trajectory"
+    message_type:"ab.trajectory.Trajectory"
+}
+
